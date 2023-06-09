@@ -1,14 +1,19 @@
 import streamlit as st
 import pandas as pd
 import pickle
+from PIL import Image
 
 # Load the pre-trained model
-with open('C:/Users/Jaroya\Desktop\data_analytics\env\sarimax_model.pickle', 'rb') as f:
+with open('sarimax_model.pickle', 'rb') as f:
     sar_model = pickle.load(f)
 
 # Add Company Logo
-comp_logo = 'C:/Users/Jaroya/Desktop/data_analytics/Classic_Streamlit/Corp_logo2.png'
-st.image(comp_logo, caption='Company Caption', use_column_width=True)
+comp_logo = Image.open('Corp_logo2.png')
+# Resize the image
+resized_logo = comp_logo.resize((500, 500))  # Adjust the size of image
+
+# Display the resized image
+st.image(resized_logo, caption='Company Caption', use_column_width=True)
 
 # Draw a horizontal line using HTML markup
 st.markdown('<hr style="border: 2px solid orange; background-color: orange;">', unsafe_allow_html=True)
